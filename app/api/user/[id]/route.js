@@ -1,14 +1,41 @@
 // pages/api/users/[id].js
-import { ObjectId } from 'mongodb';
-import clientPromise from '@/lib/mongodb';
-import { NextResponse } from 'next/server';
+import { ObjectId } from "mongodb";
+import clientPromise from "@/lib/mongodb";
+import { NextResponse } from "next/server";
+
+export async function GET(req) {
+    try {
+        const client = await clientPromise;
+        const db = client.db("andrea37");
+        const collection = db.collection("user_kripto");
+
+        // Get the user ID from the URL
+        const { id } = req.query;
+
+        const user = await collection.findOne({
+            _id: new ObjectId(id),
+        });
+
+        if (!user) {
+            return res.status(404).json({ error: "User not found" });
+        }
+
+        return NextResponse.json({ user });
+    } catch (error) {
+        console.error("Database Error:", error);
+        return NextResponse.json({
+            error: "Internal Server Error",
+            message: error.message,
+        });
+    }
+}
 
 // export default async function handler(req, res) {
 //   try {
 //     const client = await clientPromise;
 //     const db = client.db("andrea37");
 //     const collection = db.collection("user_kripto");
-    
+
 //     // Get the user ID from the URL
 //     const { id } = req.query;
 
@@ -17,11 +44,11 @@ import { NextResponse } from 'next/server';
 //         const user = await collection.findOne({
 //           _id: new ObjectId(id)
 //         });
-        
+
 //         if (!user) {
 //           return res.status(404).json({ error: 'User not found' });
 //         }
-        
+
 //         res.status(200).json(user);
 //         break;
 
@@ -30,11 +57,11 @@ import { NextResponse } from 'next/server';
 //           { _id: new ObjectId(id) },
 //           { $set: req.body }
 //         );
-        
+
 //         if (updateResult.matchedCount === 0) {
 //           return res.status(404).json({ error: 'User not found' });
 //         }
-        
+
 //         res.status(200).json(updateResult);
 //         break;
 
@@ -42,11 +69,11 @@ import { NextResponse } from 'next/server';
 //         const deleteResult = await collection.deleteOne({
 //           _id: new ObjectId(id)
 //         });
-        
+
 //         if (deleteResult.deletedCount === 0) {
 //           return res.status(404).json({ error: 'User not found' });
 //         }
-        
+
 //         res.status(200).json(deleteResult);
 //         break;
 
