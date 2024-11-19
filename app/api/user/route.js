@@ -26,7 +26,7 @@ export async function GET(request) {
         }
 
         console.log("Mencoba mengambil data users...");
-        const users = await db.collection("users").find({}).toArray();
+        const users = await db.collection("user_kripto").find({}).toArray();
 
         console.log("Data users:", users);
         return NextResponse.json({ users });
