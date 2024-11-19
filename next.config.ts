@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
   sassOptions: {
     includePaths : ['./app'],
     logger: {
-      warn: function(message) {
+      warn: function(message: string) {
         console.warn(message)
       }
     }
