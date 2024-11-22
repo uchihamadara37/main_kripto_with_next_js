@@ -11,7 +11,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import { formatTanggalLahir, formatTanggalIndonesia } from '@/app/play/page';
+import { formatTanggalLahir, formatTanggalIndonesia } from "@/lib/formattingTanggal";
 import { InputWithLabel } from '../inputWithLabel';
 import { Label } from '@radix-ui/react-label';
 import { Button } from '../ui/button';

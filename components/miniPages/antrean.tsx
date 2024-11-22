@@ -10,7 +10,7 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table"
-import { formatTanggalLahir, formatTanggalIndonesia } from '@/app/play/page';
+import { formatTanggalLahir, formatTanggalIndonesia } from "@/lib/formattingTanggal";
 import { Button } from "../ui/button";
 
 type Antrean = {
