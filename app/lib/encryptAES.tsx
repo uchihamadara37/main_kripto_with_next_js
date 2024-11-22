@@ -50,8 +50,12 @@ export function DecryptAES(encryptedText: string, key: string): string {
         let decrypted = decipher.update(encrypted, 'base64', 'utf8');
         decrypted += decipher.final('utf8');
         
+
+        // alert("Dekripsi berhasil!")
         return decrypted;
     } catch (error: any) {
-        throw new Error(`Decryption failed: ${error.message}`);
+        alert("Dekripsi gagal")
+        return "";
+        // throw new Error(`Decryption failed: ${error.message}`);
     }
 }

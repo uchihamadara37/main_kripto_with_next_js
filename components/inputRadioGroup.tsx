@@ -19,12 +19,14 @@ export function DropdownMenuRadioGroupDemo({
     value,
     onChange,
     title,
+    className
 }: {
     listValue: string[];
     label: string;
     title: string;
     value?: string;
     onChange?: (value : string) => void;
+    className?: string
 }) {
     const [position, setPosition] = React.useState(value || "empty")
 
@@ -37,8 +39,8 @@ export function DropdownMenuRadioGroupDemo({
 
     return (
         <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-                <Button variant="outline">{label}</Button>
+            <DropdownMenuTrigger asChild >
+                <Button variant="outline" className={className}>{label}</Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-56">
                 <DropdownMenuLabel>{title}</DropdownMenuLabel>

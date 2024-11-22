@@ -8,8 +8,9 @@ const TextareaWithLabel = forwardRef<HTMLTextAreaElement, {
     placeholder?: string;
     onChange?: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
     value?: string;
+    readonly?: boolean;
 }>
-(({ label, placeholder, onChange, value }, ref) => {
+(({ label, placeholder, onChange, value, readonly = false }, ref) => {
     // Tambahkan event handler untuk fokus/blur
     const handleFocus = () => {
         console.log('Textarea focused')
@@ -42,6 +43,7 @@ const TextareaWithLabel = forwardRef<HTMLTextAreaElement, {
         <div className="grid w-full gap-2 mt-4">
             <Label htmlFor="message" className="text-base">{label}</Label>
             <Textarea
+                readOnly ={readonly}
                 className="h-96 text-base"
                 placeholder={placeholder || "Type your message"}
                 id="message"

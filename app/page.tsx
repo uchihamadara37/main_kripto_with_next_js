@@ -1,20 +1,24 @@
 "use client";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { useRouter } from "next/navigation";
 import style from "./style.module.css"
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { signIn } from "next-auth/react"
+import { EncryptAES } from "./lib/encryptAES";
 
-import { MongoClient, ServerApiVersion } from 'mongodb';
+// import { useSession } from "next-auth/react";
+import { EncryptVigenere, DecryptVigenere} from "@/lib/encryptVigenere"
 
-async function fetchUsers() {
-    const response = await fetch('/api/user');
-    const data = await response.json();
-    return data;
+const hashPassword = async (password: string) => {
+    const msgUint8 = new TextEncoder().encode(password); // Konversi teks ke Uint8Array 
+    const hashBuffer = await crypto.subtle.digest('SHA-256', msgUint8); // Menghasilkan hash 
+    const hashArray = Array.from(new Uint8Array(hashBuffer)); // Konversi hash ke array 
+    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join(''); // Konversi ke hex return hashHex; 
+    return hashHex
 }
-
 
 
 export default function LoginPage() {
@@ -22,23 +26,75 @@ export default function LoginPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const handleSubmit = async (e: React.FormEvent) => {
+    // const { data: session, status } = useSession()
+
+    // if (status === "loading") {
+    //     return (
+    //         <div className="flex items-center justify-center min-h-screen">
+    //             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+    //         </div>
+    //     )
+    // }
+
+
+
+    function base64ToHex(base64 : string): string {
+        const buffer = Buffer.from(base64, 'base64')
+        return buffer.toString('hex')
+    }
+    
+    function hexToBase64(hexString : string): string {
+        const buffer = Buffer.from(hexString, 'hex')
+        return buffer.toString('base64')
+    }
+
+    const handleSubmit = useCallback(async (e: React.FormEvent) => {
         e.preventDefault();
-        // Logika login di sini
-        const validEmail = "123@123.com";
-        const validPassword = "123";
 
-        const data = await fetchUsers();
-        console.log(data)
+        const hashedPass = await hashPassword(password)
 
-        if (email === validEmail && password === validPassword) {
-            console.log("Login sukses! Arahkan ke /home");
-            router.push('/homepage'); // Mengarahkan ke halaman /home
-        } else {
-            console.log("Login gagal. Periksa email dan password Anda.");
-            alert("Login gagal. Email atau password salah.");
+        const payload = {
+            email,
+            password: hashedPass,
         }
-    };
+
+        try {
+            const data = await fetch(`http://localhost:3000/api/login`,
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Connection': 'keep-alive',
+                        'Keep-Alive': 'timeout=7'
+                    },
+                    body: JSON.stringify(payload),
+                }
+            )
+            if (data.ok) {
+                const datas = await data.json()
+                console.log(datas)
+                if (datas.data.length > 0) {
+
+                    let newEmail = EncryptVigenere(email, "jangkrik")
+                    const emailLabel = EncryptVigenere("email", "jangkrik")
+                    // console.log(emailLabel)
+                    console.log("signin hex:", newEmail)
+                    console.log("berhasil login")
+                    router.push(`/play?${emailLabel}=${newEmail}`)
+                    return;
+                } else {
+                    console.log("gagal login")
+                }
+            } else {
+                alert("gagal fetch..")
+                return
+            }
+        } catch (error) {
+            console.log(error)
+        }
+
+
+    }, [email, password])
 
     return (
 
@@ -47,17 +103,18 @@ export default function LoginPage() {
 
             <div className="relative z-2">
                 <div className="flex flex-col lg:flex-row items-center justify-center lg:w-[90rem]">
+                    
                     {/* side kiri <==== */}
-                    <div className="w-full lg:w-1/2 mb-8 lg:mb-0 mt-10 lg:mt-0 ">
-                        <h1 className="text-slate-200 text-shadow text-5xl font-bold text-center lg:text-left mb-4 ">Main Teka-teki Kriptografi</h1>
-                        <p className="text-gray-200 text-center text-shadow lg:text-left text-2xl mb-7">Dibangun dengan Vercel | Next.JS | Shadcn/UI</p>
+                    <div className="w-full md:w-1/2 lg:w-1/2 mb-8 lg:mb-0 mt-10 lg:mt-0 ">
+                        <h1 className="text-slate-200 text-shadow text-5xl font-bold text-center lg:text-left mb-4 ">Kunjungan Medis Pukesmas</h1>
+                        <p className=" hidden lg:block text-gray-200 text-center text-shadow lg:text-left text-2xl mb-7">Dibangun dengan Vercel | Next.JS | Shadcn/UI</p>
 
                         <div className="flex flex-col lg:flex-row items-center gap-5 ">
                             {/* profil */}
                             <div className="img flex-none hidden lg:block">
                                 <img src="/slice1.jpg" alt="..." className=" border-4 lg:border-2 p-1 border-slate-100 rounded-full lg:w-20 lg:h-20" />
                             </div>
-                            <div className="border-t-2 lg:border-t-0 pt-4 lg:pt-0 lg:border-l-2 lg:pl-5 border-slate-100">
+                            <div className=" hidden lg:block border-t-2 lg:border-t-0 pt-4 lg:pt-0 lg:border-l-2 lg:pl-5 border-slate-100">
                                 <p className="grow font-normal lg:font-medium text-xl lg:text-3xl text-slate-100 lg:mb-2 text-shadow">Andrea Alfian S.</p>
                                 <p className="grow font-normal lg:font-medium text-xl lg:text-2xl text-slate-100 text-center lg:text-start text-shadow">123220078</p>
 
@@ -81,8 +138,8 @@ export default function LoginPage() {
 
 
                     {/* side kanan ==> */}
-                    <div className="glassmor w-full lg:w-1/2 p-8 rounded-2xl shadow-md max-w-xl">
-                        <h1 className="text-2xl font-bold mb-6 text-slate-50 text-center">Sign In</h1>
+                    <div className="glassmor w-full md:w-1/2 lg:w-1/2 p-8 rounded-2xl shadow-md max-w-xl">
+                        <h1 className="text-2xl font-bold mb-6 text-white text-center">Silakan Masuk</h1>
                         <form className="space-y-4" onSubmit={handleSubmit}>
                             <div className="space-y-2">
                                 <Label htmlFor="email" className="text-slate-100 text-lg font-medium">Email</Label>
@@ -99,7 +156,7 @@ export default function LoginPage() {
                                 />
                             </div>
                             <Button type="submit" className="w-full bg-red-950 text-xl"
-                                onClick={(e) => handleSubmit }
+                                onClick={(e) => handleSubmit}
                             >
                                 Log in
                             </Button>

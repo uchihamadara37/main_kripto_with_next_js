@@ -1,32 +1,59 @@
 // pages/api/users/[id].js
 import { ObjectId } from "mongodb";
-import clientPromise from "@/lib/mongodb";
+// import clientPromise from "@/lib/mongodb";
 import { NextResponse } from "next/server";
+import { executeQuery } from "@/lib/mysql";
 
-export async function GET(req) {
+export async function GET(request, { params }) {
     try {
-        const client = await clientPromise;
-        const db = client.db("andrea37");
-        const collection = db.collection("user_kripto");
+        const { id } = await params; // Mengambil parameter id dari URL
 
-        // Get the user ID from the URL
-        const { id } = req.query;
-
-        const user = await collection.findOne({
-            _id: new ObjectId(id),
+        const data = await executeQuery({
+            query: "SELECT * FROM user WHERE id = ?",
+            values: [id],
         });
 
-        if (!user) {
-            return res.status(404).json({ error: "User not found" });
-        }
-
-        return NextResponse.json({ user });
+        return NextResponse.json({ data });
     } catch (error) {
-        console.error("Database Error:", error);
-        return NextResponse.json({
-            error: "Internal Server Error",
-            message: error.message,
+        return NextResponse.json({ error: error.message }, { status: 500 });
+    }
+}
+
+export async function PUT(request, { params }) {
+    try {
+        const { id } = await params; // Mengambil parameter id dari URL
+        const body = await request.json(); // Mengambil data dari body request
+        const { name, email, password, score } = body; // Sesuaikan kolom yang dibutuhkan
+
+        const data = await executeQuery({
+            query: "UPDATE user SET name = ?, email = ?, password = ?, score = ? WHERE id = ?",
+            values: [name, email, password, score, id],
         });
+
+        return NextResponse.json({
+            message: "User updated successfully",
+            data,
+        });
+    } catch (error) {
+        return NextResponse.json({ error: error.message }, { status: 500 });
+    }
+}
+
+export async function DELETE(request, { params }) {
+    try {
+        const { id } = await params; // Mengambil parameter id dari URL
+
+        const data = await executeQuery({
+            query: "DELETE FROM user WHERE id = ?",
+            values: [id],
+        });
+
+        return NextResponse.json({
+            message: "User deleted successfully",
+            data,
+        });
+    } catch (error) {
+        return NextResponse.json({ error: error.message }, { status: 500 });
     }
 }
 
