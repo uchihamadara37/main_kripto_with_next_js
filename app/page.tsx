@@ -26,7 +26,7 @@ export default function LoginPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    console.log(process.env.MYSQL_HOST);
+    console.log("host : ", process.env.MYSQL_HOST);
 
     // const { data: session, status } = useSession()
 
