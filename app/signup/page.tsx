@@ -56,7 +56,7 @@ export default function SignupPage() {
 
         // jika user biasa
         try {
-            const data = await fetch(`http://localhost:3000/api/email/${email}`,
+            const data = await fetch(`/api/email/${email}`,
                 {
                     method: 'GET',
                     headers: {
@@ -104,7 +104,7 @@ export default function SignupPage() {
                     address,
                     token : 'admin'
                 };
-                const response = await fetch('http://localhost:3000/api/user', {
+                const response = await fetch('/api/user', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -140,7 +140,7 @@ export default function SignupPage() {
                     address,
                     token : 'biasa'
                 };
-                const response = await fetch('http://localhost:3000/api/user', {
+                const response = await fetch('/api/user', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

@@ -150,7 +150,7 @@ function Play() {
         const fetchUserData = async () => {
             try {
                 console.log("email didapat", email)
-                const data = await fetch(`http://localhost:3000/api/email/${email}`,
+                const data = await fetch(`/api/email/${email}`,
                     {
                         method: 'GET',
                         headers: {
@@ -249,7 +249,7 @@ function Play() {
                 keterangan: diagnosis,
                 id_admin: user.id,
             }
-            const response = await fetch('http://localhost:3000/api/riwayat', {
+            const response = await fetch('/api/riwayat', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -279,7 +279,7 @@ function Play() {
             id_user: user.id,
             nama: user.name
         }
-        const response = await fetch('http://localhost:3000/api/antrean', {
+        const response = await fetch('/api/antrean', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

@@ -57,12 +57,6 @@ const TableExportExcel = ({
   const [showUser, setShowUser] = useState("user")
   const [allRiwayatBulan, setAllRiwayatBulan] = useState<allRiwayat[]>([])
 
-  // const fetchAllRiwayat = async () => {
-
-  //   const response = await fetch(`/api/riwayat/`)
-  //   const data = await response.json()
-  //   setAllRiwayatBulan(data.data)
-  // }
 
   useEffect(() => {
 
