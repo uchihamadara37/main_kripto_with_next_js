@@ -51,7 +51,6 @@ export default function FileUpload() {
 
             const filenya = e.target.files[0]
             if (filenya.name.endsWith(".xlsx")) {
-                
                 setFile(filenya);
                 setError(null);
             }else{

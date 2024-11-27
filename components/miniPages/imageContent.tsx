@@ -176,7 +176,7 @@ const ImageContent = ({ }) => {
 
     }, [stegaEText, stegaObjImage, stegaKey])
 
-    const hanldeDecryptStega = useCallback(() => {
+    const hanldeDecryptStega = useCallback(async () => {
 
         if ((imageResult == null || stegaDecryptImage == null) && !stegaKey2) {
             console.log('No image selected')
@@ -188,7 +188,7 @@ const ImageContent = ({ }) => {
             setIsDialogOpen(true)
             try {
                 if (imageResult != null && stegaDecryptImage == null) {
-                    const { encryptedImage, originalImage, plaintext } = decryptSteganography(imageResult, stegaKey2)
+                    const { encryptedImage, originalImage, plaintext } = await decryptSteganography(imageResult, stegaKey2)
                     // setImageResult(image)
                     if (plaintext) {
                         setExtractedText(plaintext);
@@ -199,7 +199,7 @@ const ImageContent = ({ }) => {
                         console.log("gambar ori", originalImage)
                     }
                 } else if (imageResult == null && stegaDecryptImage != null) {
-                    const { encryptedImage, originalImage, plaintext } = decryptSteganography(stegaDecryptImage, stegaKey2)
+                    const { encryptedImage, originalImage, plaintext } = await decryptSteganography(stegaDecryptImage, stegaKey2)
                     // setImageResult(image)
                     if (plaintext) {
                         setExtractedText(plaintext);

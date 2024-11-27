@@ -102,6 +102,7 @@ export async function decryptSteganography(
 
     } catch (error) {
         if (signal.aborted) {
+            alert("Dekripsi gagal")
             throw new Error("Execution time exceeded 4 seconds.");
         }
         throw error;
