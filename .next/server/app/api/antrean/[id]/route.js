@@ -1,0 +1,11 @@
+const CHUNK_PUBLIC_PATH = "server/app/api/antrean/[id]/route.js";
+const runtime = require("../../../../chunks/[turbopack]_runtime.js");
+runtime.loadChunk("server/chunks/e931f_next_4e07f4._.js");
+runtime.loadChunk("server/chunks/6375b_mysql2_e20b06._.js");
+runtime.loadChunk("server/chunks/a351f_iconv-lite_c0a30a._.js");
+runtime.loadChunk("server/chunks/20b31_aws-ssl-profiles_lib_26e116._.js");
+runtime.loadChunk("server/chunks/node_modules__pnpm_7ee2fe._.js");
+runtime.loadChunk("server/chunks/[root of the server]__a1e477._.js");
+runtime.loadChunk("server/chunks/_f551fe._.js");
+runtime.getOrInstantiateRuntimeModule("[project]/.next-internal/server/app/api/antrean/[id]/route/actions.js [app-rsc] (ecmascript)", CHUNK_PUBLIC_PATH);
+module.exports = runtime.getOrInstantiateRuntimeModule("[project]/node_modules/.pnpm/next@15.0.3_react-dom@19.0.0-rc-cd22717c-20241013_react@19.0.0-rc-cd22717c-20241013_sass@1.80.6/node_modules/next/dist/esm/build/templates/app-route.js { INNER_APP_ROUTE => \"[project]/app/api/antrean/[id]/route.js [app-route] (ecmascript)\" } [app-route] (ecmascript)", CHUNK_PUBLIC_PATH).exports;

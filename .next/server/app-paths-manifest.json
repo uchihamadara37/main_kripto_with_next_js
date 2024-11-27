@@ -1,0 +1,9 @@
+{
+  "/page": "app/page.js",
+  "/api/login/route": "app/api/login/route.js",
+  "/play/page": "app/play/page.js",
+  "/api/riwayat/route": "app/api/riwayat/route.js",
+  "/api/userBiasa/route": "app/api/userBiasa/route.js",
+  "/api/email/[email]/route": "app/api/email/[email]/route.js",
+  "/api/antrean/[id]/route": "app/api/antrean/[id]/route.js"
+}
