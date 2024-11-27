@@ -26,6 +26,8 @@ export default function LoginPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
+    console.log(process.env.MYSQL_HOST);
+
     // const { data: session, status } = useSession()
 
     // if (status === "loading") {
@@ -95,7 +97,8 @@ export default function LoginPage() {
 
 
     }, [email, password])
-
+    
+    
     return (
 
         <div className="root-login min-h-screen flex items-center justify-center bg-cover bg-center p-4">
