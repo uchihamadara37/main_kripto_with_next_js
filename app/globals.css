@@ -108,6 +108,8 @@
 
 .root-login {
     background-image: url("/Landscape-Wallpaper.jpg");
+    background-position: center;
+    background-attachment: fixed;
 }
 
 .glassmor {

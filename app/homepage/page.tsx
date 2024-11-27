@@ -24,25 +24,7 @@ export default function Home() {
 
     const [activeContent, setActiveContent] = useState<ContentType>('text');
 
-    // steganografi
     
-
-
-
-    
-
-    // =========================================================================================
-
-    // Komponen untuk masing-masing konten
-    // konten text
-
-    // useEffect(() => {
-    //     console.log('Component re-rendered', inputText)
-    // }, [inputText])
-
-    // const handleChange = useCallback((e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    //     setInputText(e.target.value)
-    // }, [])
 
     const renderContent = () => {
         switch (activeContent) {
@@ -66,7 +48,7 @@ export default function Home() {
             {/* Navbar */}
             <nav className="bg-primary p-4">
                 <div className="container mx-auto flex justify-between items-center">
-                    <Link href="/" className="text-2xl font-bold text-primary-foreground">Alfiander_ShadcnUI</Link>
+                    <Link href="/" className="text-lg lg:text-2xl font-bold text-primary-foreground">Alfiander_ShadcnUI</Link>
                     {/* <div className="top-8 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-row gap-2"> */}
                     <div className="space-x-4">
                         <Button
