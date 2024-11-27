@@ -1,4 +1,4 @@
-// File: D:\next_js_kriptografi\app\seed\route.ts
+// File: /media/andre/DATA/next_js_kriptografi/app/seed/route.ts
 import * as entry from '../../../../app/seed/route.js'
 import type { NextRequest } from 'next/server.js'
 

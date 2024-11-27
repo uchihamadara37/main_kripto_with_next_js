@@ -1,4 +1,4 @@
-// File: D:\next_js_kriptografi\app\api\riwayat\route.js
+// File: /media/andre/DATA/next_js_kriptografi/app/api/riwayat/route.js
 import * as entry from '../../../../../app/api/riwayat/route.js'
 import type { NextRequest } from 'next/server.js'
 

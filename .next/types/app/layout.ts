@@ -1,4 +1,4 @@
-// File: D:\next_js_kriptografi\app\layout.tsx
+// File: /media/andre/DATA/next_js_kriptografi/app/layout.tsx
 import * as entry from '../../../app/layout.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

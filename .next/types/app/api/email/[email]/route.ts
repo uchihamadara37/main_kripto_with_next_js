@@ -1,4 +1,4 @@
-// File: D:\next_js_kriptografi\app\api\email\[email]\route.js
+// File: /media/andre/DATA/next_js_kriptografi/app/api/email/[email]/route.js
 import * as entry from '../../../../../../app/api/email/[email]/route.js'
 import type { NextRequest } from 'next/server.js'
 

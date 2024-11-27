@@ -1,3 +1,17 @@
 {
-  "/api/antrean/[id]/route": "app/api/antrean/[id]/route.js"
+  "/api/antrean/[id]/route": "app/api/antrean/[id]/route.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/api/antrean/route": "app/api/antrean/route.js",
+  "/api/email/[email]/route": "app/api/email/[email]/route.js",
+  "/api/login/route": "app/api/login/route.js",
+  "/api/riwayat/[id]/route": "app/api/riwayat/[id]/route.js",
+  "/api/riwayat/route": "app/api/riwayat/route.js",
+  "/api/user/[id]/route": "app/api/user/[id]/route.js",
+  "/api/user/route": "app/api/user/route.js",
+  "/api/userBiasa/route": "app/api/userBiasa/route.js",
+  "/seed/route": "app/seed/route.js",
+  "/homepage/page": "app/homepage/page.js",
+  "/page": "app/page.js",
+  "/play/page": "app/play/page.js",
+  "/signup/page": "app/signup/page.js"
 }
