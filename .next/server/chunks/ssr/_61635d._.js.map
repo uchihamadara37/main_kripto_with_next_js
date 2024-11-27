@@ -1,9 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 7, "column": 0}, "map": {"version":3,"sources":["file://D%3A/next_js_kriptografi/app/layout.tsx"],"sourcesContent":["import './globals.css'\n\nexport default function RootLayout({\n  children,\n}: {\n  children: React.ReactNode;\n}) {\n  return (\n    <html lang=\"en\">\n      <body>\n          {children}\n      </body>\n    </html>\n  );\n}\n"],"names":[],"mappings":";;;;;;AAEe,SAAS,WAAW,EACjC,QAAQ,EAGT;IACC,qBACE,oaAAC;QAAK,MAAK;kBACT,cAAA,oaAAC;sBACI;;;;;;;;;;;AAIX"}},
-    {"offset": {"line": 29, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}},
-    {"offset": {"line": 40, "column": 0}, "map": {"version":3,"sources":["file://D%3A/next_js_kriptografi/node_modules/.pnpm/next%4015.0.3_react-dom%4019.0.0-rc-cd22717c-20241013_react%4019.0.0-rc-cd22717c-20241013_sass%401.80.6/node_modules/next/src/server/route-modules/app-page/vendored/rsc/react-jsx-dev-runtime.ts"],"sourcesContent":["module.exports = require('../../module.compiled').vendored[\n  'react-rsc'\n].ReactJsxDevRuntime\n"],"names":["module","exports","require","vendored","ReactJsxDevRuntime"],"mappings":";AAAAA,OAAOC,OAAO,GAAGC,QAAQ,6OAAyBC,QAAQ,CACxD,YACD,CAACC,kBAAkB","ignoreList":[0]}},
-    {"offset": {"line": 42, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}}]
-}
