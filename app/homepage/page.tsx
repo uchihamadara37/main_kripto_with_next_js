@@ -50,7 +50,7 @@ export default function Home() {
                 <div className="container mx-auto flex justify-between items-center">
                     <Link href="/" className="text-lg lg:text-2xl font-bold text-primary-foreground">Alfiander_ShadcnUI</Link>
                     {/* <div className="top-8 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-row gap-2"> */}
-                    <div className="space-x-4">
+                    <div className="flex flex-row gap-1 lg:gap-4">
                         <Button
                             onClick={() => setActiveContent('text')}
                             className={buttonVariants({ variant: "outline", className: activeContent === 'text' ? 'bg-slate-100 text-slate-800' : 'bg-slate-900 text-slate-50' })}
