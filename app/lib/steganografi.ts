@@ -43,47 +43,71 @@ export function encryptSteganography(
 }
 
 // Fungsi untuk mendekripsi pesan dari gambar
-export function decryptSteganography(
+export async function decryptSteganography(
     encryptedImage: ImageData,
     key: string
-): SteganographyResult {
-    // Baca panjang pesan dari 32 pixel pertama
-    let messageLengthBinary = '';
-    for (let i = 0; i < 32; i++) {
-        messageLengthBinary += encryptedImage.data[i * 4] & 1;
+): Promise<SteganographyResult> {
+
+    const TIMEOUT = 4000; // 4 detik dalam milidetik
+    const controller = new AbortController();
+    const { signal } = controller;
+
+    const timeout = setTimeout(() => {
+        controller.abort(); // Memicu timeout jika waktu habis
+    }, TIMEOUT);
+
+    try {
+        return await new Promise((resolve, reject) => {
+            if (signal.aborted) {
+                return reject(new Error("Execution time exceeded 4 seconds."));
+            }
+            // Baca panjang pesan dari 32 pixel pertama
+            let messageLengthBinary = '';
+            for (let i = 0; i < 32; i++) {
+                messageLengthBinary += encryptedImage.data[i * 4] & 1;
+            }
+            const messageLength = parseInt(messageLengthBinary, 2);
+
+            // Baca pesan terenkripsi dari LSB
+            let encryptedBinary = '';
+            for (let i = 0; i < messageLength; i++) {
+                const pixelIndex = i + 32;
+                encryptedBinary += encryptedImage.data[pixelIndex * 4] & 1;
+            }
+
+            // Dekripsi binary message menggunakan key
+            const decryptedBinary = xorEncrypt(encryptedBinary, key);
+
+            // Konversi kembali ke plaintext
+            const plaintext = binaryToText(decryptedBinary);
+
+            // Buat salinan gambar original dengan menghapus LSB
+            const originalImage = new ImageData(
+                new Uint8ClampedArray(encryptedImage.data),
+                encryptedImage.width,
+                encryptedImage.height
+            );
+
+            // Bersihkan LSB untuk mendapatkan gambar original
+            for (let i = 0; i < originalImage.data.length; i += 4) {
+                originalImage.data[i] &= 254;
+            }
+
+            resolve( {
+                encryptedImage,
+                originalImage,
+                plaintext
+            })
+        });
+
+    } catch (error) {
+        if (signal.aborted) {
+            throw new Error("Execution time exceeded 4 seconds.");
+        }
+        throw error;
+    } finally {
+        clearTimeout(timeout); // Pastikan timeout dihentikan
     }
-    const messageLength = parseInt(messageLengthBinary, 2);
-
-    // Baca pesan terenkripsi dari LSB
-    let encryptedBinary = '';
-    for (let i = 0; i < messageLength; i++) {
-        const pixelIndex = i + 32;
-        encryptedBinary += encryptedImage.data[pixelIndex * 4] & 1;
-    }
-
-    // Dekripsi binary message menggunakan key
-    const decryptedBinary = xorEncrypt(encryptedBinary, key);
-
-    // Konversi kembali ke plaintext
-    const plaintext = binaryToText(decryptedBinary);
-
-    // Buat salinan gambar original dengan menghapus LSB
-    const originalImage = new ImageData(
-        new Uint8ClampedArray(encryptedImage.data),
-        encryptedImage.width,
-        encryptedImage.height
-    );
-
-    // Bersihkan LSB untuk mendapatkan gambar original
-    for (let i = 0; i < originalImage.data.length; i += 4) {
-        originalImage.data[i] &= 254;
-    }
-
-    return {
-        encryptedImage,
-        originalImage,
-        plaintext
-    };
 }
 
 // Fungsi helper untuk konversi text ke binary
