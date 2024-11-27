@@ -50,8 +50,13 @@ export default function FileUpload() {
         if (e.target.files && e.target.files[0]) {
 
             const filenya = e.target.files[0]
-            setFile(filenya);
-            setError(null);
+            if (filenya.name.endsWith(".xlsx")) {
+                
+                setFile(filenya);
+                setError(null);
+            }else{
+                alert("Please ensure you choose .xlsx File (Excel)")
+            }
             // console.log(filenya)
             // console.log(file)
             // console.log("file berhasil diambil :", file)
