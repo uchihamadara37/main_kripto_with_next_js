@@ -114,7 +114,7 @@ export default function FileUpload() {
 
             } catch (err) {
                 setError(err instanceof Error ? err.message : 'Failed to process file');
-                console.error(err);
+                // console.error(err);
             } finally {
                 setIsLoading(false);
                 setKey2('')
@@ -148,14 +148,21 @@ export default function FileUpload() {
         if (e.target.files && e.target.files[0]) {
 
             const filenya = e.target.files[0]
-            setFile2(filenya);
-            if (filenya) {
-                const textFile2 = await fileToString(filenya)
-                setText(textFile2)
-                console.log("hasil dari file2 string : ", textFile2)
+            console.log(filenya)
+            if (filenya.name.endsWith(".xlsx")) {
+                setFile2(filenya);
+                if (filenya) {
+                    const textFile2 = await fileToString(filenya)
+                    setText(textFile2)
+                    console.log("hasil dari file2 string : ", textFile2)
+                } else {
+                    console.log("file2 masih undefined")
+                }
             } else {
-                console.log("file2 masih undefined")
+                alert("File tidak valid. Harus berformat .xlsx (Excel)");
+                // Lakukan sesuatu jika file tidak valid
             }
+
         }
     };
 
@@ -190,9 +197,9 @@ export default function FileUpload() {
             <h1 className="text-3xl font-semibold text-center mb-7">
                 Encrypt File Excel (.xlsx)
             </h1>
-            <div className=" flex flex-row p-4 gap-5">
+            <div className=" flex flex-col lg:flex-row p-4 gap-5">
                 <div className="flex-none w-[30rem]">
-                    <Label className="">Select file.xlsx from local</Label>
+                    <Label className="text-lg">Select file.xlsx from local</Label>
                     <Input
                         type="file"
                         onChange={handleFileChange}
@@ -216,6 +223,7 @@ export default function FileUpload() {
                     </div>
 
                 </div>
+                {/* ======================================== */}
                 <div className="flex-initial w-1/3">
                     {text && (
                         <div className="flex ">
@@ -254,19 +262,19 @@ export default function FileUpload() {
                     </div>
 
                     {hasilDekrip && (
-                        <div className="flex mt-5 justify-end">
+                        <div className="flex mt-5 justify-end ">
                             <Button
-                                className=''
+                                className='bg-blue-500'
                                 onClick={(e) => handleDownload2(e)}
                             >Download Original PDF</Button>
                         </div>
                     )}
                 </div>
 
-                <div className="flex-none w-[30rem] pl-10">
+                <div className="flex-none w-[30rem] lg:pl-10">
                     {!text && (
                         <div className="">
-                            <Label className="">Select file.xlsx had already encrypted before from local</Label>
+                            <Label className="text-lg">Select file.xlsx had already encrypted before from local</Label>
                             <Input
                                 type="file"
                                 onChange={handleFileChange2}

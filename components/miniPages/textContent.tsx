@@ -83,60 +83,112 @@ const TextContent = ({
         const fullyDecrypted = decryptVigenere(aesDecrypted, vigenereKey)
         setInputText(fullyDecrypted)
 
-        // if (inputRef.current) {
-        //     inputRef.current.focus();
-        // }
     }, [outputText, vigenereKey, aesKey])
-    
+
+    const handleClear = () => {
+        setVigenereKey('')
+        setOutputText('')
+        setAesKey('')
+        setInputText('')
+    }
+    const handleCopyText1 = () => {
+        // Pastikan inputText berisi teks yang ingin disalin
+        if (inputText) {
+            navigator.clipboard.writeText(inputText)
+                .then(() => {
+                    console.log('Text copied to clipboard:', inputText);
+                })
+                .catch((err) => {
+                    console.error('Failed to copy text: ', err);
+                });
+        }
+    };
+    const handleCopyText2 = () => {
+        // Pastikan inputText berisi teks yang ingin disalin
+        if (outputText) {
+            navigator.clipboard.writeText(outputText)
+                .then(() => {
+                    // console.log('Text copied to clipboard:', inputText);
+                })
+                .catch((err) => {
+                    console.error('Failed to copy text: ', err);
+                });
+        }
+    };
+
     return (
-    <div className="flex flex-wrap sm:flex-nowrap sm:flex-col md:flex-row gap-4">
+        <div className="flex flex-wrap sm:flex-nowrap sm:flex-col md:flex-row gap-4">
 
-        <div className="w-full md:w-1/3 bg-card text-card-foreground p-6 rounded-lg shadow">
-            <h2 className="text-2xl font-bold mb-4 text-cyan-500">Input Text Message</h2>
-            <p className='text-lg'>Please insert the message you want to encrypt here...</p>
-            <TextareaWithLabel
-                // ref={inputRef}
-                label='Your message'
-                value={inputText}
-                onChange={e => setInputText(e.target.value)}
-            />
+            <div className="w-full md:w-1/3 bg-card text-card-foreground p-6 rounded-lg shadow">
+                <h2 className="text-2xl font-bold mb-4 text-cyan-500">Input Text Message</h2>
+                <p className='text-lg'>Please insert the message you want to encrypt here...</p>
+                <div className="absolute flex justify-between mt-[25rem] ">
+                    <button
+                        title="Copy now"
+                        className="ml-2"
+                        onClick={handleCopyText1}
+                    >
+                        <img src="/copy.png" alt="..." />
+                    </button>
+                </div>
+                <TextareaWithLabel
+                    // ref={inputRef}
+                    label='Your message'
+                    value={inputText}
+                    onChange={e => setInputText(e.target.value)}
+                />
 
-        </div>
-        <div className="w-full md:w-1/3 bg-card text-card-foreground p-6 rounded-lg shadow">
-            <div className="h-full flex flex-col justify-center">
-                <InputWithLabel
-                    label='Insert Vigenere Key'
-                    value={vigenereKey}
-                    onChange={(e) => setVigenereKey(e.target.value)}
-                />
-                <InputWithLabel
-                    label='Insert Your AES key'
-                    value={aesKey}
-                    onChange={(e) => setAesKey(e.target.value)}
-                />
-                <div className="flex justify-center items-center gap-3">
-                    <Button
-                        className={buttonVariants({ variant: "destructive", size: 'default', className: 'bg-green-500 mt-3' })}
-                        onClick={handleEncrypt}
-                    >Encrypt Now</Button>
-                    <Button
-                        className={buttonVariants({ variant: "destructive", size: 'default', className: 'bg-blue-500 mt-3' })}
-                        onClick={handleDecrypt}
-                    >Decrypt Now</Button>
+            </div>
+            <div className="w-full md:w-1/3 bg-card text-card-foreground p-6 rounded-lg shadow">
+                <div className="h-full flex flex-col justify-center">
+                    <InputWithLabel
+                        label='Insert Vigenere Key'
+                        value={vigenereKey}
+                        onChange={(e) => setVigenereKey(e.target.value)}
+                    />
+                    <InputWithLabel
+                        label='Insert Your AES key'
+                        value={aesKey}
+                        onChange={(e) => setAesKey(e.target.value)}
+                    />
+                    <div className="flex justify-center items-center gap-3">
+                        <Button
+                            className={buttonVariants({ variant: "destructive", size: 'default', className: 'bg-green-500 mt-3' })}
+                            onClick={handleEncrypt}
+                        >Encrypt Now</Button>
+                        <Button
+                            className={buttonVariants({ variant: "destructive", size: 'default', className: 'bg-blue-500 mt-3' })}
+                            onClick={handleDecrypt}
+                        >Decrypt Now</Button>
+                    </div>
+                    <div className="flex justify-center mt-4">
+                        <Button
+                            className={buttonVariants({ variant: "outline", size: 'default', className: 'text-primary mt-3' })}
+                            onClick={handleClear}
+                        >Clear all fields</Button>
+                    </div>
                 </div>
             </div>
+            <div className="w-full md:w-1/3 bg-card text-card-foreground p-6 rounded-lg shadow">
+                <h2 className="text-2xl font-bold mb-4 text-green-500">Message Result</h2>
+                <p className='text-lg'>Please insert your chipper text in here if you want to decrypt message.</p>
+                <div className="absolute flex justify-between mt-[25rem] ">
+                    <button
+                        title="Copy now"
+                        className="ml-2"
+                        onClick={handleCopyText2}
+                    >
+                        <img src="/copy.png" alt="..." />
+                    </button>
+                </div>
+                <TextareaWithLabel
+                    // ref={outputRef}
+                    label='Your chipperText message'
+                    value={outputText}
+                    onChange={(e) => setOutputText(e.target.value)}
+                />
+            </div>
         </div>
-        <div className="w-full md:w-1/3 bg-card text-card-foreground p-6 rounded-lg shadow">
-            <h2 className="text-2xl font-bold mb-4 text-green-500">Message Result</h2>
-            <p className='text-lg'>Please insert your chipper text in here if you want to decrypt message.</p>
-
-            <TextareaWithLabel
-                // ref={outputRef}
-                label='Your chipperText message'
-                value={outputText}
-                onChange={(e) => setOutputText(e.target.value)}
-            />
-        </div>
-    </div>
-)};
+    )
+};
 export default TextContent;

@@ -111,13 +111,13 @@ export default function Antrean() {
     return (
         <div className="mt-4">
             <p className="mb-3 text-red-700">Tolong panggil pasien sesuai antrean!</p>
-            <div className="rounded-lg border border-orange-700">
+            <div className="overflow-y-auto max-h-[calc(100vh-35rem)]  rounded-lg border border-orange-700">
                 <Table className=''>
                     <TableHeader>
                         <TableRow className='border-b-2 border-orange-700 bg-orange-700 bg-opacity-10'>
                             <TableHead className="font-bold text-slate-900 w-[15rem]">Nama</TableHead>
                             <TableHead className="font-bold text-slate-900 w-[8rem]">No Urut</TableHead>
-                            <TableHead className="font-bold text-slate-900 w-[10rem]">Waktu Ambil Nomor</TableHead>
+                            <TableHead className="font-bold text-slate-900 min-w-[10rem]">Waktu Ambil Nomor</TableHead>
                             <TableHead className="font-bold text-slate-900 w-[10rem]">Panggil | Hapus</TableHead>
                         </TableRow>
                     </TableHeader>
@@ -127,7 +127,7 @@ export default function Antrean() {
                                 className="cursor-pointer border-b border-orange-700"
                                 key={ant.id}
                             >
-                                <TableCell className="font-normal">{ant.nama}</TableCell>
+                                <TableCell className="whitespace-nowrap">{ant.nama}</TableCell>
                                 <TableCell className="font-normal">{ant.no_urut}</TableCell>
                                 <TableCell>{formatTanggalIndonesia(ant.timestamp)}</TableCell>
                                 <TableCell>

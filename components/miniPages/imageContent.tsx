@@ -43,79 +43,6 @@ const StegaOptionImage = ({
 }
 
 
-// const StegaOptionBoth = ({
-//     setStegaEText,
-//     stegaEText,
-//     setStegaEImage
-// }: {
-//     setStegaEImage: (file: File) => Promise<void>;
-//     setStegaEText: React.Dispatch<React.SetStateAction<string>>;
-//     stegaEText: string;
-// }) => {
-//     return (
-//         <>
-//             <InputWithLabel
-//                 label='Embedded Message'
-//                 onChange={(e) => setStegaEText(e.target.value)}
-//                 placeholder='type something..'
-//                 value={stegaEText}
-//             />
-//             <ImageInput
-//                 label='Embedded Image (Max 10 Mb)'
-//                 accept="image/*"
-//                 maxSize={10 * 1024 * 1024}
-//                 onChange={setStegaEImage}
-//             />
-//         </>
-
-//     )
-// }
-
-// konten image encrypt
-
-
-
-// const ImageHasilView2 = ({
-//     imageResult,
-//     plainText
-// }: {
-//     imageResult: ImageData | null;
-//     plainText: string
-// }) => {
-//     if (imageResult != null && plainText) {
-//         // Membuat canvas temporary untuk konversi ImageData ke URL
-//         const canvas = document.createElement('canvas');
-//         canvas.width = imageResult.width;
-//         canvas.height = imageResult.height;
-
-//         // Mendapatkan context dan memasukkan ImageData
-//         const ctx = canvas.getContext('2d');
-//         if (ctx) {
-//             ctx.putImageData(imageResult, 0, 0);
-
-//             // Mengkonversi canvas ke data URL
-//             const dataUrl = canvas.toDataURL();
-
-//             return (
-//                 <div className="flex flex-col">
-//                     <p className="mt-3 font-semibold">Plain Text</p>
-//                     <p className="mt-1">{plainText}</p>
-//                     <p className="mt-7 font-semibold">Cover Image</p>
-//                     <img
-//                         alt="Result"
-//                         src={dataUrl}
-//                         className="w-full h-auto rounded-md" // optional styling
-//                     />
-//                 </div>
-//             );
-//         }
-//     }
-//     return (
-//         <p>There is no result or Image</p>
-//     )
-// }
-
-// type StegaOptions = "Text" | "Image" | "Text and Image"
 
 const ImageContent = ({ }) => {
 
@@ -221,30 +148,6 @@ const ImageContent = ({ }) => {
         }
     };
 
-    // const renderStegaOpt = () => {
-    //     switch (stegaOpt) {
-    //         case 'Text':
-    //             return <StegaOptionText
-    //                 setStegaEText={setStegaEText}
-    //                 stegaEText={stegaEText}
-    //             />
-    //         case 'Image':
-    //             return <StegaOptionImage
-    //                 setStegaEImage={handleFileUpload1}
-    //             />
-    //         case 'Text and Image':
-    //             return <StegaOptionBoth
-    //                 setStegaEImage={handleFileUpload1}
-    //                 setStegaEText={setStegaEText}
-    //                 stegaEText={stegaEText}
-    //             />
-    //         default:
-    //             return <StegaOptionText
-    //                 setStegaEText={setStegaEText}
-    //                 stegaEText={stegaEText}
-    //             />
-    //     }
-    // }
 
     const handleCreateStega = useCallback(async () => {
 
@@ -411,7 +314,7 @@ const ImageContent = ({ }) => {
         <div className="flex flex-wrap sm:flex-nowrap sm:flex-col md:flex-row gap-4">
 
             <div className="w-full md:w-1/3 bg-card text-card-foreground p-6 rounded-lg shadow">
-                <h2 className="text-2xl font-bold mb-4 text-primary">Text and Image Encrypt (Steganography)</h2>
+                <h2 className="text-2xl font-bold mb-4 text-primary text-center lg:text-start">Text and Image Encrypt (Steganography)</h2>
                 
                 <p className="text-base font-semibold text-green-600 mt-10">Embedded Message</p>
                 <StegaOptionText
@@ -519,7 +422,7 @@ const ImageContent = ({ }) => {
                 </div>
             </div>
             <div className="w-full md:w-1/3 bg-card text-card-foreground p-6 rounded-lg shadow">
-                <h2 className="text-2xl font-bold mb-4 text-primary">Steganography Decryotion</h2>
+                <h2 className="text-2xl font-bold mb-4 text-primary text-center lg:text-start">Steganography Decryption</h2>
 
                 <InputWithLabel
                     className="pt-10"

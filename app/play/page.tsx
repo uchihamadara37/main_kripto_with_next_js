@@ -32,6 +32,7 @@ import Antrean from "@/components/miniPages/antrean";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { Terminal } from 'lucide-react';
 import { formatTanggalLahir, formatTanggalIndonesia } from "@/lib/formattingTanggal";
+import { Suspense } from 'react';
 
 
 
@@ -76,8 +77,15 @@ function hexToBase64(hexString: string): string {
     return buffer.toString('base64')
 }
 
+export default function PlayPage() {
+    return (
+      <Suspense fallback={<div>Loading...</div>}>
+        <Play />
+      </Suspense>
+    );
+  }
 
-export default function Play() {
+function Play() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const emailLabel = EncryptVigenere("email", "jangkrik")
@@ -303,14 +311,14 @@ export default function Play() {
 
     return (
         <div className="root-login min-h-screen bg-gray-50">
-            <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8">
                 {/* Content wrapper */}
                 <div className="max-w-7xl mx-auto">
                     {/* Main content area */}
-                    <div className="bg-white bg-opacity-95 rounded-lg shadow-sm p-6">
+                    <div className="bg-white bg-opacity-95 rounded-lg shadow-sm p-6 max-h-[calc(100vh-2rem)] overflow-hidden">
 
 
-                        <div className="p-4">
+                        <div className="">
                             <p className="text-3xl mb-3">{user.name}</p>
 
                             {user.role != "admin" ? (
@@ -340,7 +348,7 @@ export default function Play() {
                                     
                                     </div>
                                     <h1 className="text-center text-2xl mb-5 lg:mb-3 font-bold text-orange-950">Daftar Riwayat Anda Ke Pukesmas</h1>
-                                    <div className="rounded-md border border-orange-700">
+                                    <div className="overflow-y-auto max-h-[calc(100vh-22rem)] overflow-x-auto rounded-md border border-orange-700">
                                         <Table className=''>
 
                                             <TableHeader>
@@ -371,7 +379,7 @@ export default function Play() {
 
                                 </div>
                             ) : (
-                                <div className="flex flex-col -mx-5 lg:mx-0 -mb-5 lg:mb-0">
+                                <div className="flex flex-col mb-1 lg:mx-0  lg:mb-0">
 
                                     <div className="mt-3 flex flex-wrap justify-center gap-3 mb-5">
                                         <Button className={cn("bg-green-500", (showUser == "user" ? "bg-primary" : ""))}
@@ -391,17 +399,17 @@ export default function Play() {
                                     {showUser == "user" && (
                                         <div className="">
                                             <h1 className="text-center text-3xl mb-8 lg:mb-5 lg:mt-4  font-bold text-orange-950">Daftar Masyarakat yang Tergabung Sistem.</h1>
-                                            <div className="rounded-lg border border-orange-700">
-                                                <Table className="">
+                                            <div className="overflow-y-auto max-h-[calc(100vh-22rem)] overflow-x-auto rounded-lg border border-orange-700">
+                                                <Table className="table-auto w-full">
                                                     <TableCaption >Semoga sehat selalu.</TableCaption>
                                                     <TableHeader>
                                                         <TableRow className='border-b-2 border-orange-700 bg-orange-700 bg-opacity-10'>
-                                                            <TableHead className="font-bold text-slate-900 break-all w-[8rem] lg:w-[12rem]">NIK</TableHead>
-                                                            <TableHead className="font-bold text-slate-900 w-[15rem]">Nama</TableHead>
-                                                            <TableHead className="font-bold text-slate-900 w-[10rem]">Tanggal lahir</TableHead>
-                                                            <TableHead className="font-bold text-slate-900 w-[8rem]  hidden lg:block">Gender</TableHead>
-                                                            <TableHead className="font-bold text-slate-900 w-[20rem]">Alamat</TableHead>
-                                                            <TableHead className="font-bold text-slate-900 w-[10rem]">Status</TableHead>
+                                                            <TableHead className="font-bold text-slate-900 break-all ">NIK</TableHead>
+                                                            <TableHead className="font-bold text-slate-900 ">Nama</TableHead>
+                                                            <TableHead className="font-bold text-slate-900 w-[13rem]">Tanggal lahir</TableHead>
+                                                            <TableHead className="font-bold text-slate-900 hidden lg:block">Gender</TableHead>
+                                                            <TableHead className="font-bold text-slate-900 ">Alamat</TableHead>
+                                                            <TableHead className="font-bold text-slate-900 ">Status</TableHead>
                                                         </TableRow>
                                                     </TableHeader>
                                                     <TableBody>
@@ -413,9 +421,9 @@ export default function Play() {
                                                             >
                                                                 <TableCell className="font-normal">{user.nik}</TableCell>
                                                                 <TableCell className=''>{user.name}</TableCell>
-                                                                <TableCell>{formatTanggalLahir(user.birth_date)}</TableCell>
+                                                                <TableCell className="whitespace-nowrap">{formatTanggalLahir(user.birth_date)}</TableCell>
                                                                 <TableCell className="hidden lg:block">{user.gender}</TableCell>
-                                                                <TableCell >{user.address}</TableCell>
+                                                                <TableCell className="min-w-[20rem]">{user.address}</TableCell>
                                                                 <TableCell >{user.status}</TableCell>
                                                             </TableRow>
                                                         ))}
@@ -430,7 +438,7 @@ export default function Play() {
                                         <div className="">
                                             <h1 className="text-center  text-3xl mb-8 lg:mb-5 lg:mt-4 font-bold text-orange-950">Daftar Kunjungan Pasien Terbaru.</h1>
 
-                                            <div className="rounded-md border border-orange-700">
+                                            <div className="overflow-y-auto max-h-[calc(100vh-22rem)] overflow-x-auto rounded-md border border-orange-700">
                                                 <Table className=''>
                                                     <TableCaption >Semoga sehat selalu.</TableCaption>
                                                     <TableHeader>
@@ -449,12 +457,12 @@ export default function Play() {
                                                                 className="cursor-pointer border-b border-orange-700"
                                                                 key={rw.id}
                                                             >
-                                                                <TableCell className="font-normal">{rw.nama_pasien}</TableCell>
+                                                                <TableCell className="whitespace-nowrap">{rw.nama_pasien}</TableCell>
                                                                 <TableCell className=''>{rw.nik}</TableCell>
-                                                                <TableCell className=''>{formatTanggalIndonesia(rw.timestamp)}</TableCell>
+                                                                <TableCell className='min-w-[10rem]'>{formatTanggalIndonesia(rw.timestamp)}</TableCell>
                                                                 <TableCell className=''>{rw.keluhan}</TableCell>
-                                                                <TableCell className=''>{rw.keterangan}</TableCell>
-                                                                <TableCell className=''>{rw.name_admin}</TableCell>
+                                                                <TableCell className='min-w-[15rem]'>{rw.keterangan}</TableCell>
+                                                                <TableCell className='whitespace-nowrap'>{rw.name_admin}</TableCell>
 
                                                             </TableRow>
                                                         ))}

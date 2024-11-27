@@ -107,7 +107,7 @@ export default function LoginPage() {
                     {/* side kiri <==== */}
                     <div className="w-full md:w-1/2 lg:w-1/2 mb-8 lg:mb-0 mt-10 lg:mt-0 ">
                         <h1 className="text-slate-200 text-shadow text-5xl font-bold text-center lg:text-left mb-4 ">Kunjungan Medis Pukesmas</h1>
-                        <p className=" hidden lg:block text-gray-200 text-center text-shadow lg:text-left text-2xl mb-7">Dibangun dengan Vercel | Next.JS | Shadcn/UI</p>
+                        <p className=" hidden lg:block text-gray-200 text-center text-shadow lg:text-left text-2xl mb-10">Dibangun dengan Vercel | Next.JS | Shadcn/UI</p>
 
                         <div className="flex flex-col lg:flex-row items-center gap-5 ">
                             {/* profil */}
@@ -121,7 +121,7 @@ export default function LoginPage() {
                             </div>
                         </div>
                         {/* <div className="mt-10 border-t-2 border-slate-50 w-[15rem]"></div> */}
-                        <h1 className="mt-5 lg:mt-20 text-gray-200 text-center text-shadow lg:text-left text-xl break-words mb-7 lg:mb-3">Fitur Umum enkripsi dan dekripsi text, <br />steganografi (text dalam gambar), dan file dapat digunakan tanpa login</h1>
+                        <h1 className="mt-5 lg:mt-10 text-gray-200 text-center text-shadow lg:text-left text-xl break-words mb-7 lg:mb-3">Fitur Umum enkripsi dan dekripsi text, <br />steganografi (text dalam gambar), dan file Excel dapat digunakan tanpa login</h1>
                         <div className="flex justify-center lg:justify-start">
                             <Button
                                 variant={"secondary"}

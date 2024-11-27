@@ -160,7 +160,7 @@ const TableExportExcel = ({
         <div className="">
 
           <h1 className="mb-3 font-semibold text-xl mt-4">Table User ke Excel</h1>
-          <div className="rounded-lg border border-orange-700">
+          <div className="overflow-y-auto max-h-[calc(100vh-35rem)] overflow-x-auto rounded-lg border border-orange-700">
             <Table ref={tableRef} className=''>
               <TableCaption >Semoga sehat selalu.</TableCaption>
               <TableHeader>
@@ -180,10 +180,10 @@ const TableExportExcel = ({
                     key={user.id}
                   >
                     <TableCell className="font-normal">{user.nik}</TableCell>
-                    <TableCell className=''>{user.name}</TableCell>
-                    <TableCell>{formatTanggalLahir(user.birth_date)}</TableCell>
+                    <TableCell className='whitespace-nowrap'>{user.name}</TableCell>
+                    <TableCell className='min-w-[10rem]'>{formatTanggalLahir(user.birth_date)}</TableCell>
                     <TableCell>{user.gender}</TableCell>
-                    <TableCell>{user.address}</TableCell>
+                    <TableCell className='min-w-[15rem]'>{user.address}</TableCell>
                     <TableCell>{user.status}</TableCell>
                   </TableRow>
                 ))}
@@ -197,16 +197,16 @@ const TableExportExcel = ({
         <div className="">
 
           <h1 className="mb-3 font-semibold text-xl mt-4">Table Semua Riwayat ke Excel</h1>
-          <div className="rounded-lg border border-orange-700">
+          <div className="overflow-y-auto max-h-[calc(100vh-35rem)] rounded-lg border border-orange-700">
             <Table ref={tableRef} className=''>
               <TableCaption >Semoga sehat selalu.</TableCaption>
               <TableHeader>
                 <TableRow className='border-b-2 border-orange-700 bg-orange-700 bg-opacity-10'>
                   <TableHead className="font-bold text-slate-900 w-[15rem]">Nama Pasien</TableHead>
                   <TableHead className="font-bold text-slate-900 w-[12rem]">NIK</TableHead>
-                  <TableHead className="font-bold text-slate-900 w-[18rem]">Waktu kunjungan pasien</TableHead>
+                  <TableHead className="font-bold text-slate-900 min-w-[10rem]">Waktu kunjungan pasien</TableHead>
                   <TableHead className="font-bold text-slate-900 w-[8rem]">Keluhan</TableHead>
-                  <TableHead className="font-bold text-slate-900 w-[20rem]">Diagnosis</TableHead>
+                  <TableHead className="font-bold text-slate-900 min-w-[15rem]">Diagnosis</TableHead>
                   <TableHead className="font-bold text-slate-900 w-[10rem]">Dokter | Perawat</TableHead>
                 </TableRow>
               </TableHeader>
@@ -216,12 +216,12 @@ const TableExportExcel = ({
                     className="cursor-pointer border-b border-orange-700"
                     key={rw.id}
                   >
-                    <TableCell className="font-normal">{rw.nama_pasien}</TableCell>
+                    <TableCell className="whitespace-nowrap">{rw.nama_pasien}</TableCell>
                     <TableCell className=''>{rw.nik}</TableCell>
                     <TableCell className=''>{formatTanggalIndonesia(rw.timestamp)}</TableCell>
                     <TableCell className=''>{rw.keluhan}</TableCell>
                     <TableCell className=''>{rw.keterangan}</TableCell>
-                    <TableCell className=''>{rw.name_admin}</TableCell>
+                    <TableCell className='whitespace-nowrap'>{rw.name_admin}</TableCell>
 
                   </TableRow>
                 ))}
