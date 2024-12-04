@@ -104,27 +104,26 @@ export default function LoginPage() {
         <div className="root-login min-h-screen flex items-center justify-center bg-cover bg-center p-4">
             <div className="block lg:hidden absolute inset-0 bg-black opacity-30 pointer-events-none z-0"></div>
 
-            <div className="relative z-2">
-                <div className="flex flex-col lg:flex-row items-center justify-center lg:w-[90rem]">
+            <div className="relative z-2 w-full">
+                <div className="flex flex-col lg:flex-row items-center justify-center">
                     
                     {/* side kiri <==== */}
-                    <div className="w-full md:w-1/2 lg:w-1/2 mb-8 lg:mb-0 mt-10 lg:mt-0 ">
+                    <div className="w-full md:w-1/2 lg:w-1/2 mb-8 lg:mb-0 mt-10 lg:mt-0">
                         <h1 className="text-slate-200 text-shadow text-5xl font-bold text-center lg:text-left mb-4 ">Kunjungan Medis Pukesmas</h1>
                         <p className=" hidden lg:block text-gray-200 text-center text-shadow lg:text-left text-2xl mb-10">Dibangun dengan Vercel | Next.JS | Shadcn/UI</p>
 
                         <div className="flex flex-col lg:flex-row items-center gap-5 ">
                             {/* profil */}
-                            <div className="img flex-none hidden lg:block">
+                            {/* <div className="img flex-none hidden lg:block">
                                 <img src="/slice1.jpg" alt="..." className=" border-4 lg:border-2 p-1 border-slate-100 rounded-full lg:w-20 lg:h-20" />
                             </div>
                             <div className=" hidden lg:block border-t-2 lg:border-t-0 pt-4 lg:pt-0 lg:border-l-2 lg:pl-5 border-slate-100">
                                 <p className="grow font-normal lg:font-medium text-xl lg:text-3xl text-slate-100 lg:mb-2 text-shadow">Andrea Alfian S.</p>
                                 <p className="grow font-normal lg:font-medium text-xl lg:text-2xl text-slate-100 text-center lg:text-start text-shadow">123220078</p>
-
-                            </div>
+                            </div> */}
                         </div>
                         {/* <div className="mt-10 border-t-2 border-slate-50 w-[15rem]"></div> */}
-                        <h1 className="mt-5 lg:mt-10 text-gray-200 text-center text-shadow lg:text-left text-xl break-words mb-7 lg:mb-3">Fitur Umum enkripsi dan dekripsi text, <br />steganografi (text dalam gambar), dan file Excel dapat digunakan tanpa login</h1>
+                        <h1 className="mt-5 lg:mt-5 text-gray-200 text-center text-shadow lg:text-left text-xl break-words mb-7 lg:mb-3">Fitur Umum enkripsi dan dekripsi text, <br />steganografi (text dalam gambar), dan file Excel dapat digunakan tanpa login</h1>
                         <div className="flex justify-center lg:justify-start">
                             <Button
                                 variant={"secondary"}

@@ -315,7 +315,7 @@ function Play() {
                 {/* Content wrapper */}
                 <div className="max-w-7xl mx-auto">
                     {/* Main content area */}
-                    <div className="bg-white bg-opacity-95 rounded-lg shadow-sm p-6 max-h-[calc(100vh-2rem)] overflow-hidden">
+                    <div className="bg-white bg-opacity-95 rounded-lg shadow-sm p-6  ">
 
 
                         <div className="">

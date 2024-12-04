@@ -152,9 +152,9 @@ const TableExportExcel = ({
       </div>
       {showUser == "user" && (
         <div className="">
-
+          {/* max-h-[calc(100vh-10rem)] */}
           <h1 className="mb-3 font-semibold text-xl mt-4">Table User ke Excel</h1>
-          <div className="overflow-y-auto max-h-[calc(100vh-35rem)] overflow-x-auto rounded-lg border border-orange-700">
+          <div className="overflow-y-auto  overflow-x-auto rounded-lg border border-orange-700">
             <Table ref={tableRef} className=''>
               <TableCaption >Semoga sehat selalu.</TableCaption>
               <TableHeader>
@@ -191,7 +191,7 @@ const TableExportExcel = ({
         <div className="">
 
           <h1 className="mb-3 font-semibold text-xl mt-4">Table Semua Riwayat ke Excel</h1>
-          <div className="overflow-y-auto max-h-[calc(100vh-35rem)] rounded-lg border border-orange-700">
+          <div className="overflow-y-auto  rounded-lg border border-orange-700">
             <Table ref={tableRef} className=''>
               <TableCaption >Semoga sehat selalu.</TableCaption>
               <TableHeader>

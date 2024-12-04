@@ -111,7 +111,7 @@ export default function Antrean() {
     return (
         <div className="mt-4">
             <p className="mb-3 text-red-700">Tolong panggil pasien sesuai antrean!</p>
-            <div className="overflow-y-auto max-h-[calc(100vh-35rem)]  rounded-lg border border-orange-700">
+            <div className="overflow-y-auto   rounded-lg border border-orange-700">
                 <Table className=''>
                     <TableHeader>
                         <TableRow className='border-b-2 border-orange-700 bg-orange-700 bg-opacity-10'>
